@@ -6,18 +6,28 @@ import { Route } from 'react-router-dom';
 import About from './pages/about';
 import Home from './pages/home';
 
-const route = [
+//Components
+import Header from './components/header';
+
+const routes = [
   { path: "/", name: "Home", Component: Home },
   { path: "/about", name: "About", Component: About }
 ];
 
 function App() {
   return (
-    <div className="App">
-      <Route path='/'>
-        <Home />
-      </Route>
-    </div>
+    <>
+    <Header />
+      <div className="container">
+        { routes.map (({ path, Component }) => (
+          <Route key='name' path={path} exact>
+            <div className="page">
+              <Component />
+            </div>
+          </Route>
+        ))}
+      </div>
+    </>
   );
 }
 
